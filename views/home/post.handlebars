@@ -1,0 +1,77 @@
+<div class="row">
+
+    <!-- Post Content Column -->
+    <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{post.title}}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+            by
+            <a href="#">{{user.firstName}}
+                {{" "}}{{user.lastName}}
+            </a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on January {{getTime post.date "MMMM Do YYYY"}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="/uploads/{{post.file}}" alt="">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">{{post.body}}</p>
+        <hr>
+
+        <!-- Comments Form -->
+
+        {{#if isLogin}}
+        {{#if post.allowComments}}
+        <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+                <form action="/admin/comments" method="POST">
+                    <div class="form-group">
+                        <textarea class="form-control" name="body" rows="3"></textarea>
+                        <input type="hidden" name="id" value="{{post._id}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        {{else}}
+        <h2 class="mb-4 mt-4 text-danger">Comments are not allowed for this</h2>
+        <hr class="mb-4" />
+        <br />
+        {{/if}}
+        {{else}}
+        <p class="lead">You need login to comment <a class="btn btn-primary" href="/login">Login</a></p>
+
+        {{/if}}
+        <!-- Single Comment -->
+        {{#each comments}}
+        <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" height="100" width="100" src="/uploads/{{user.image}}" alt="">
+            <div class="media-body">
+                <h5 class="mt-0">{{user.firstName}} </h5>
+                <h6>{{getTime date "MMMM Do YYYY"}}</h6>
+                {{body}}
+            </div>
+        </div>
+        {{/each}}
+
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    {{>home/sidebar}}
+
+</div>
+<!-- /.row -->

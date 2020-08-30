@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Create Category</h1>
+        <form action="/admin/categories/create" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" name="name" class="form-control">
+            </div>
+            <button class="btn btn-primary">Create Category</button>
+        </form>
+    </div>
+
+    <div class="col-sm-12 mt-4">
+        <h1>Categories</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Edit Category</th>
+                    <th>Delete Category</th>
+                </tr>
+            </thead>
+
+            {{#each categories}}
+            <tr>
+                <td>{{_id}}</td>
+                <td>{{name}}</td>
+                <td><a class="btn btn-primary" href="/admin/categories/edit/{{_id}}">Edit</a></td>
+                <td>
+                    <form action="/admin/categories/{{_id}}?_method=DELETE" method="POST">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
