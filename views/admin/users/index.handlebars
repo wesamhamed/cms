@@ -1,0 +1,31 @@
+<h1>All User</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>lastName</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>image</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{_id}}</td>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{email}}</td>
+            <td>{{role}}</td>
+            <td><img height="50" class="img-responsive" src="/uploads/{{image}}" alt=""></td>
+            <td>
+                <form action="/admin/users/{{_id}}?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

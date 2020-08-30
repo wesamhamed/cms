@@ -20,7 +20,7 @@ const adminRouter = require("./routes/admin/index");
 const postsRouter = require("./routes/admin/posts");
 const categoriesRouter = require("./routes/admin/categories");
 const commentsRouter = require("./routes/admin/comments");
-// const usersRouter = require("./routes/admin/users");
+const usersRouter = require("./routes/admin/users");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -67,7 +67,8 @@ app.use("/admin", adminRouter);
 app.use("/admin/posts", postsRouter);
 app.use("/admin/categories", categoriesRouter);
 app.use("/admin/comments", commentsRouter);
-// app.use("/admin/users",usersRouter);
+app.use("/admin/users", usersRouter);
+
 app.use((err, req, res, next) => {
     if (err) {
         console.error(err);
