@@ -160,4 +160,23 @@ router.get("/post/:id", (req, res) => {
 })
 
 
+router.post("/add/comments", (req, res) => {
+    const { id, body } = req.body;
+    Post.findById(id).then((post) => {
+
+        const comment = new Comment({
+            user: req.user._id,
+            body
+        });
+        // console.log(comment);
+        post.comments.push(comment);
+        post.save().then((savedPost) => {
+            comment.save().then((savedComment) => {
+                req.flash("success_message", "Your comment will review in a second.")
+                res.redirect(`/post/${post._id}`)
+            })
+        })
+    })
+})
+
 module.exports = router;

@@ -64,9 +64,9 @@ app.use((req, res, next) => {
 })
 app.use("/", homeRouter);
 app.use("/admin", adminRouter);
+app.use("/admin/comments", commentsRouter);
 app.use("/admin/posts", postsRouter);
 app.use("/admin/categories", categoriesRouter);
-app.use("/admin/comments", commentsRouter);
 app.use("/admin/users", usersRouter);
 
 app.use((err, req, res, next) => {
