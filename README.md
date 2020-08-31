@@ -17,6 +17,7 @@ node app.js
 
 ## How to use the application as admin
 
+https://still-ocean-72123.herokuapp.com/
 **Go to login page then**
 
 1. *Username: admin@admin*
